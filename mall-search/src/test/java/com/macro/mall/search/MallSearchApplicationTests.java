@@ -32,7 +32,7 @@ public class MallSearchApplicationTests {
     public void testEsProductMapping(){
         IndexOperations indexOperations = elasticsearchTemplate.indexOps(EsProduct.class);
         indexOperations.putMapping(indexOperations.createMapping(EsProduct.class));
-        Map mapping = indexOperations.getMapping();
+        Map<String, Object> mapping = indexOperations.getMapping();
         System.out.println(mapping);
     }
 
