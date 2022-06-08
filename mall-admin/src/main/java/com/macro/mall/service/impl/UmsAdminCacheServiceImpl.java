@@ -102,6 +102,7 @@ public class UmsAdminCacheServiceImpl implements UmsAdminCacheService {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<UmsResource> getResourceList(Long adminId) {
         String key = REDIS_DATABASE + ":" + REDIS_KEY_RESOURCE_LIST + ":" + adminId;
         return (List<UmsResource>) redisService.get(key);

@@ -38,8 +38,8 @@ public class DemoController {
     @ApiOperation(value = "添加品牌")
     @RequestMapping(value = "/brand/create", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult createBrand(@Validated @RequestBody PmsBrandDto pmsBrand) {
-        CommonResult commonResult;
+    public CommonResult<PmsBrandDto> createBrand(@Validated @RequestBody PmsBrandDto pmsBrand) {
+        CommonResult<PmsBrandDto> commonResult;
         int count = demoService.createBrand(pmsBrand);
         if (count == 1) {
             commonResult = CommonResult.success(pmsBrand);
@@ -54,8 +54,8 @@ public class DemoController {
     @ApiOperation(value = "更新品牌")
     @RequestMapping(value = "/brand/update/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult updateBrand(@PathVariable("id") Long id, @Validated @RequestBody PmsBrandDto pmsBrandDto) {
-        CommonResult commonResult;
+    public CommonResult<PmsBrandDto> updateBrand(@PathVariable("id") Long id, @Validated @RequestBody PmsBrandDto pmsBrandDto) {
+        CommonResult<PmsBrandDto> commonResult;
         int count = demoService.updateBrand(id, pmsBrandDto);
         if (count == 1) {
             commonResult = CommonResult.success(pmsBrandDto);
@@ -70,7 +70,7 @@ public class DemoController {
     @ApiOperation(value = "删除品牌")
     @RequestMapping(value = "/brand/delete/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult deleteBrand(@PathVariable("id") Long id) {
+    public CommonResult<Void> deleteBrand(@PathVariable("id") Long id) {
         int count = demoService.deleteBrand(id);
         if (count == 1) {
             LOGGER.debug("deleteBrand success :id={}", id);
@@ -84,8 +84,9 @@ public class DemoController {
     @ApiOperation(value = "分页获取品牌列表")
     @RequestMapping(value = "/brand/list", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<CommonPage<PmsBrand>> listBrand(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
-                                                        @RequestParam(value = "pageSize", defaultValue = "3") Integer pageSize) {
+    public CommonResult<CommonPage<PmsBrand>> listBrand(
+            @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+            @RequestParam(value = "pageSize", defaultValue = "3") Integer pageSize) {
         List<PmsBrand> brandList = demoService.listBrand(pageNum, pageSize);
         return CommonResult.success(CommonPage.restPage(brandList));
     }

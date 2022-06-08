@@ -10,10 +10,10 @@ import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.functionscore.FunctionScoreQueryBuilder;
 import org.elasticsearch.index.query.functionscore.ScoreFunctionBuilders;
-import org.elasticsearch.search.aggregations.AbstractAggregationBuilder;
 import org.elasticsearch.search.aggregations.Aggregation;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.bucket.filter.ParsedFilter;
+import org.elasticsearch.search.aggregations.bucket.nested.NestedAggregationBuilder;
 import org.elasticsearch.search.aggregations.bucket.nested.ParsedNested;
 import org.elasticsearch.search.aggregations.bucket.terms.ParsedLongTerms;
 import org.elasticsearch.search.aggregations.bucket.terms.ParsedStringTerms;
@@ -227,7 +227,7 @@ public class EsProductServiceImpl implements EsProductService {
         //集合搜索分类名称
         builder.addAggregation(AggregationBuilders.terms("productCategoryNames").field("productCategoryName"));
         //聚合搜索商品属性，去除type=1的属性
-        AbstractAggregationBuilder aggregationBuilder = AggregationBuilders.nested("allAttrValues","attrValueList")
+        NestedAggregationBuilder aggregationBuilder = AggregationBuilders.nested("allAttrValues","attrValueList")
                 .subAggregation(AggregationBuilders.filter("productAttrs",QueryBuilders.termQuery("attrValueList.type",1))
                         .subAggregation(AggregationBuilders.terms("attrIds")
                                 .field("attrValueList.productAttributeId")

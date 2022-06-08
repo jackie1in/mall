@@ -2,7 +2,9 @@ package com.macro.mall.controller;
 
 import com.macro.mall.common.api.CommonPage;
 import com.macro.mall.common.api.CommonResult;
-import com.macro.mall.model.*;
+import com.macro.mall.model.UmsMenu;
+import com.macro.mall.model.UmsResource;
+import com.macro.mall.model.UmsRole;
 import com.macro.mall.service.UmsRoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -26,7 +28,7 @@ public class UmsRoleController {
     @ApiOperation("添加角色")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult create(@RequestBody UmsRole role) {
+    public CommonResult<Integer> create(@RequestBody UmsRole role) {
         int count = roleService.create(role);
         if (count > 0) {
             return CommonResult.success(count);
@@ -37,7 +39,7 @@ public class UmsRoleController {
     @ApiOperation("修改角色")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult update(@PathVariable Long id, @RequestBody UmsRole role) {
+    public CommonResult<Integer> update(@PathVariable Long id, @RequestBody UmsRole role) {
         int count = roleService.update(id, role);
         if (count > 0) {
             return CommonResult.success(count);
@@ -48,7 +50,7 @@ public class UmsRoleController {
     @ApiOperation("批量删除角色")
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult delete(@RequestParam("ids") List<Long> ids) {
+    public CommonResult<Integer> delete(@RequestParam("ids") List<Long> ids) {
         int count = roleService.delete(ids);
         if (count > 0) {
             return CommonResult.success(count);
@@ -77,7 +79,7 @@ public class UmsRoleController {
     @ApiOperation("修改角色状态")
     @RequestMapping(value = "/updateStatus/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult updateStatus(@PathVariable Long id, @RequestParam(value = "status") Integer status) {
+    public CommonResult<Integer> updateStatus(@PathVariable Long id, @RequestParam(value = "status") Integer status) {
         UmsRole umsRole = new UmsRole();
         umsRole.setStatus(status);
         int count = roleService.update(id, umsRole);
@@ -106,7 +108,7 @@ public class UmsRoleController {
     @ApiOperation("给角色分配菜单")
     @RequestMapping(value = "/allocMenu", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult allocMenu(@RequestParam Long roleId, @RequestParam List<Long> menuIds) {
+    public CommonResult<Integer> allocMenu(@RequestParam Long roleId, @RequestParam List<Long> menuIds) {
         int count = roleService.allocMenu(roleId, menuIds);
         return CommonResult.success(count);
     }
@@ -114,7 +116,7 @@ public class UmsRoleController {
     @ApiOperation("给角色分配资源")
     @RequestMapping(value = "/allocResource", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult allocResource(@RequestParam Long roleId, @RequestParam List<Long> resourceIds) {
+    public CommonResult<Integer> allocResource(@RequestParam Long roleId, @RequestParam List<Long> resourceIds) {
         int count = roleService.allocResource(roleId, resourceIds);
         return CommonResult.success(count);
     }

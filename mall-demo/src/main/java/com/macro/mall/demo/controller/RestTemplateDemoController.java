@@ -28,6 +28,7 @@ import java.util.Map;
 @Api(tags = "RestTemplateDemoController", description = "RestTemplate示例")
 @Controller
 @RequestMapping("/template")
+@SuppressWarnings("all")
 public class RestTemplateDemoController {
     @Autowired
     private RestTemplate restTemplate;
