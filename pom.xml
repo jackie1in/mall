@@ -247,7 +247,7 @@
                                 <!--定义镜像构建行为-->
                                 <build>
                                     <!--定义基础镜像-->
-                                    <from>java:11</from>
+                                    <from>openjdk:11.0.16-jre-slim-buster</from>
                                     <args>
                                         <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
                                     </args>
