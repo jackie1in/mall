@@ -74,7 +74,7 @@ public class DemoController {
         int count = demoService.deleteBrand(id);
         if (count == 1) {
             LOGGER.debug("deleteBrand success :id={}", id);
-            return CommonResult.success(null);
+            return CommonResult.success();
         } else {
             LOGGER.debug("deleteBrand failed :id={}", id);
             return CommonResult.failed("操作失败");

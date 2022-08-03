@@ -32,8 +32,8 @@ public class CommonResult<T> {
      *
      * @param data 获取的数据
      */
-    public static <T> CommonResult<T> success() {
-        return new CommonResult<T>(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(), null);
+    public static CommonResult<Void> success() {
+        return new CommonResult<Void>(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(),null);
     }
 
     /**

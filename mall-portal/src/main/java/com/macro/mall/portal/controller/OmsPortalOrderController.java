@@ -56,7 +56,7 @@ public class OmsPortalOrderController {
     @ResponseBody
     public CommonResult<Void> cancelTimeOutOrder() {
         portalOrderService.cancelTimeOutOrder();
-        return CommonResult.success(null);
+        return CommonResult.success();
     }
 
     @ApiOperation("取消单个超时订单")
@@ -64,7 +64,7 @@ public class OmsPortalOrderController {
     @ResponseBody
     public CommonResult<Void> cancelOrder(Long orderId) {
         portalOrderService.sendDelayMessageCancelOrder(orderId);
-        return CommonResult.success(null);
+        return CommonResult.success();
     }
 
     @ApiOperation("按状态分页获取用户订单列表")
@@ -91,7 +91,7 @@ public class OmsPortalOrderController {
     @ResponseBody
     public CommonResult<Void> cancelUserOrder(Long orderId) {
         portalOrderService.cancelOrder(orderId);
-        return CommonResult.success(null);
+        return CommonResult.success();
     }
 
     @ApiOperation("用户确认收货")
@@ -99,7 +99,7 @@ public class OmsPortalOrderController {
     @ResponseBody
     public CommonResult<Void> confirmReceiveOrder(Long orderId) {
         portalOrderService.confirmReceiveOrder(orderId);
-        return CommonResult.success(null);
+        return CommonResult.success();
     }
 
     @ApiOperation("用户删除订单")
@@ -107,6 +107,6 @@ public class OmsPortalOrderController {
     @ResponseBody
     public CommonResult<Void> deleteOrder(Long orderId) {
         portalOrderService.deleteOrder(orderId);
-        return CommonResult.success(null);
+        return CommonResult.success();
     }
 }

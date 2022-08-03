@@ -108,7 +108,7 @@ public class UmsAdminController {
     @RequestMapping(value = "/logout", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult<Void> logout() {
-        return CommonResult.success(null);
+        return CommonResult.success();
     }
 
     @ApiOperation("根据用户名或姓名分页获取用户列表")

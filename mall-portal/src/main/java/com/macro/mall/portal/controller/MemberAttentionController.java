@@ -67,6 +67,6 @@ public class MemberAttentionController {
     @ResponseBody
     public CommonResult<Void> clear() {
         memberAttentionService.clear();
-        return CommonResult.success(null);
+        return CommonResult.success();
     }
 }

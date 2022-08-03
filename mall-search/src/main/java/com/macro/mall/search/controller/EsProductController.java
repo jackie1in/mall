@@ -39,17 +39,17 @@ public class EsProductController {
     @ApiOperation(value = "根据id删除商品")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<Object> delete(@PathVariable Long id) {
+    public CommonResult<Void> delete(@PathVariable Long id) {
         esProductService.delete(id);
-        return CommonResult.success(null);
+        return CommonResult.success();
     }
 
     @ApiOperation(value = "根据id批量删除商品")
     @RequestMapping(value = "/delete/batch", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult<Object> delete(@RequestParam("ids") List<Long> ids) {
+    public CommonResult<Void> delete(@RequestParam("ids") List<Long> ids) {
         esProductService.delete(ids);
-        return CommonResult.success(null);
+        return CommonResult.success();
     }
 
     @ApiOperation(value = "根据id创建商品")

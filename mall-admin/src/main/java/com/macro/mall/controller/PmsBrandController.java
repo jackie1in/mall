@@ -67,7 +67,7 @@ public class PmsBrandController {
     public CommonResult<Integer> delete(@PathVariable("id") Long id) {
         int count = brandService.deleteBrand(id);
         if (count == 1) {
-            return CommonResult.success(null);
+            return CommonResult.success(count);
         } else {
             return CommonResult.failed();
         }

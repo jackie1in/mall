@@ -68,6 +68,6 @@ public class MemberProductCollectionController {
     @ResponseBody
     public CommonResult<Void> clear() {
         memberCollectionService.clear();
-        return CommonResult.success(null);
+        return CommonResult.success();
     }
 }

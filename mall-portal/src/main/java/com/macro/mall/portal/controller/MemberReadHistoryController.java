@@ -53,7 +53,7 @@ public class MemberReadHistoryController {
     @ResponseBody
     public CommonResult<Void> clear() {
         memberReadHistoryService.clear();
-        return CommonResult.success(null);
+        return CommonResult.success();
     }
 
     @ApiOperation("分页获取浏览记录")
